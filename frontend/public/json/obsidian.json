@@ -1,0 +1,43 @@
+{
+  "name": "Obsidian-App",
+  "slug": "obsidian-app",
+  "categories": [
+    9
+  ],
+  "date_created": "2025-05-30",
+  "type": "ct",
+  "updateable": true,
+  "privileged": false,
+  "interface_port": null,
+  "documentation": "https://help.obsidian.md/",
+  "website": "https://obsidian.md/",
+  "logo": "https://raw.githubusercontent.com/community-scripts/ProxmoxVE/main/misc/images/obsidian.png",
+  "description": "Obsidian is a powerful and extensible knowledge base that works on top of a local folder of plain text Markdown files. This version installs the application only; GUI access requires separate setup (e.g., X11 forwarding).",
+  "install_methods": [
+    {
+      "type": "default",
+      "script": "ct/obsidian.sh",
+      "resources": {
+        "cpu": 1,
+        "ram": 1024,
+        "hdd": 4,
+        "os": "debian",
+        "version": "12"
+      }
+    }
+  ],
+  "default_credentials": {
+    "username": null,
+    "password": null
+  },
+  "notes": [
+    {
+      "type": "info",
+      "text": "This script installs the Obsidian application. Accessing its GUI requires manual setup (e.g., X11 forwarding from your desktop to the LXC)."
+    },
+    {
+      "type": "info",
+      "text": "Consider creating a `/vaults` directory in the LXC and mounting your Obsidian vaults there for data persistence. You can do this via Proxmox's LXC 'Resources' > 'Mount Point' settings."
+    }
+  ]
+}
