@@ -32,7 +32,9 @@ $STD apt-get install -y \
   fluxbox \
   supervisor \
   xvfb \
-  dbus-x11
+  dbus-x11 \
+  libxss1 \
+  xdg-utils
 msg_ok "Installed Dependencies"
 
 msg_info "Fetching latest Obsidian version"
@@ -55,10 +57,10 @@ msg_info "Setting up VNC and Web Access"
 # Configure VNC
 mkdir -p /root/.vnc
 VNC_PASS=$(openssl rand -base64 12 | tr -dc 'a-zA-Z0-9' | head -c8)
-echo "$VNC_PASS" | tigervncpasswd -f > /root/.vnc/passwd
+echo "$VNC_PASS" | tigervncpasswd -f >/root/.vnc/passwd
 chmod 600 /root/.vnc/passwd
 
-cat <<EOF > /root/.vnc/xstartup
+cat <<EOF >/root/.vnc/xstartup
 #!/bin/sh
 # Start a D-Bus session if not already started
 if [ -z "\$DBUS_SESSION_BUS_ADDRESS" ]; then
@@ -81,7 +83,7 @@ chmod +x /root/.vnc/xstartup
 
 # Configure Supervisor
 mkdir -p /var/log/supervisor/
-cat <<EOF > /etc/supervisor/conf.d/obsidian-vnc.conf
+cat <<EOF >/etc/supervisor/conf.d/obsidian-vnc.conf
 [supervisord]
 nodaemon=true
 user=root
@@ -107,7 +109,7 @@ EOF
 systemctl enable -q --now supervisor
 
 # Store VNC password
-echo "VNC Password: $VNC_PASS (access via http://<IP>:8080)" >> ~/"$APPLICATION_CREDS_FILE"
+echo "VNC Password: $VNC_PASS (access via http://<IP>:8080)" >>~/"$APPLICATION".creds
 msg_ok "VNC and Web Access Setup Complete. Access at http://<IP>:8080"
 
 motd_ssh

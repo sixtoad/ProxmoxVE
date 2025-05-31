@@ -5,7 +5,7 @@ source <(curl -fsSL https://raw.githubusercontent.com/sixtoad/ProxmoxVE/refs/hea
 # License: MIT | https://github.com/community-scripts/ProxmoxVE/raw/main/LICENSE
 # Source: https://obsidian.md/
 
-APP="Obsidian-App"
+APP="obsidian"
 var_os="debian"
 var_version="12"
 var_disk="4"
