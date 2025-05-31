@@ -10,10 +10,10 @@ var_os="debian"
 var_version="12"
 var_disk="4"
 var_cpu="1"
-var_ram="1024" # Obsidian can be resource-intensive with many plugins
+var_ram="2048" # Increased RAM for VNC desktop environment + Obsidian
 var_arch="amd64"
-var_description="Obsidian is a powerful and extensible knowledge base. This installs the application only; GUI access requires separate setup (e.g., X11 forwarding)."
-var_tags="utility;productivity;notes"
+var_description="Obsidian is a powerful and extensible knowledge base, accessible via a web browser. This script installs Obsidian with a VNC-based web interface."
+var_tags="utility;productivity;notes;vnc"
 var_unprivileged="1" # Obsidian doesn't typically need privileged access
 
 header_info "$APP"
@@ -57,5 +57,6 @@ description
 
 msg_ok "Completed Successfully!\n"
 echo -e "${CREATING}${GN}${APP} setup has been successfully initialized!${CL}"
-echo -e "${INFO}${YW} Obsidian application is installed. GUI access requires separate setup (e.g., X11 forwarding from your desktop).${CL}"
+echo -e "${INFO}${YW} Obsidian is accessible via web browser at http://${IP}:8080 ${CL}"
+echo -e "${INFO}${YW} VNC connection details (including password) are in /root/${APP}.creds ${CL}"
 echo -e "${INFO}${YW} Consider creating a '/vaults' directory in the LXC and mounting your Obsidian vaults there for data persistence.${CL}"
